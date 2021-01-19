@@ -1,0 +1,199 @@
+<!--<!DOCTYPE html>-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小游戏</title>
+ <style>
+     body{
+         background-image: url(lovelog/image/bg.jpg);
+         cursor: url(lovelog/image/cursor.png),auto;
+         /*cursor改变指针图标样式,默认样式为auto,当自定义图片鼠标指针的时候,如果图片无法加载,采用默认样式,
+         "浏览器还怕图片无法正常加载,必须在图片路径后面加,auto"*/
+         /*兼容性写法:应为有浏览器不支持这个属性
+         谷歌和Safar浏览器内核:-webkit-
+         火狐浏览器:-moz-
+         欧朋浏览器:-o-*/
+         -moz-user-select: none;
+     }
+     table{
+         width: 600px;
+         height: 600px;
+         border: 1px solid #000;
+         margin: 100 auto;
+         /*margin: x页面边距如果一个值表示所有边距都为这个值,如果两个值表示上下
+         margin: xy;上下X,左右Y;
+         margin: xyz;上X左右y,z下
+         margin: abcd;分别是上右下左*/
+         /*定宽居中:1必须是块级元素2必须有宽度3*/
+     }
+     td{
+         width: 150px;
+         height: 150px;
+         background-image: url(lovelog/image/hole.png);
+         background-size: 120px 50px;
+         /*前宽后高*/
+         background-repeat: no-repeat;
+         background-position: center bottom;
+         /*背景的位置:前水平后数值*/
+         text-align: center;
+         /*块级元素内的行内元素居中对齐*/
+         vertical-align: bottom;
+         /*竖直方向上靠下*/
+
+     }
+     img{
+         width: 80px;
+         height: 0;
+         position: relative;
+         /*相对于元素本身进行定位*/
+         bottom: 15px;
+          animation-timing-function: linear;
+         animation-fill-mode: both;
+         
+     }
+     p{/*当元素设置绝对定位时会变成块状元素*/
+         background: rgba(10, 10, 10,0.5);
+         position:absolute;
+         width: 200px;
+         height: 60px;
+         color:#000;
+         text-align:center;
+         line-height:50px;
+         font-size:30px;
+         left: 0;
+         border-top-right-radius: 5px;
+         /*先上下后左右 可写两个值,如果两个值一样,可以写一个值*/
+         border-bottom-right-radius: 5px;
+     }
+     /*rgb显示器三原色取值0-255,a=alpha是透明度 默认为1,取值0-1,0是为隐藏*/
+     .up{
+         animation-name: up;
+         /*动画名*/
+         animation-duration: 0.3s;
+         /*动画时间*/
+         /*animation-timing-function: linear;*/
+         /*匀速上升*/
+         /*animation-fill-mode: both;*/
+         /*让动画保持在结束时的状态*/
+     }
+       @keyframes up{
+         0%{
+             height: 0;
+         }
+         100%{
+             height: 80px;
+         }
+     } 
+     .down{
+         animation-name: down;
+         animation-duration: 0.1s;
+         /*animation-timing-function: linear;
+         animation-fill-mode: both;*/
+     }
+     @keyframes down{
+         0%{
+             height: 80px;
+         }
+         100%{
+             height: 0;
+         }
+     } 
+       
+ </style>
+    
+</head>
+<body>
+    <audio src="lovelog/audio/music.mp3" autoplay loop></audio>
+    <!--插入音频,路径,属性:autoplay自动播放,loop循环播放,写在标签里面的都是标签属性-->
+	<h1>100分有惊喜哟！！  </h1>
+    <audio src="" id="dazhong"></audio>
+        <!--可以这样写table>(tr>td>*4)*4就可以-->
+        <p id="score">得分:0</p>
+        <table>
+            <tr>
+            <td><img src="lovelog/image/mouse.png" alt="地鼠" ></td>
+            <!--alt表示当图片无法加载时alt中的内容会呈现在页面-->
+            <td><img src="lovelog/image/mouse.png" alt="地鼠" ></td>
+            <td><img src="lovelog/image/mouse.png" alt="地鼠" ></td>
+            <td><img src="lovelog/image/mouse.png" alt="地鼠" ></td>
+            </tr>
+            <tr>
+            <td><img src="lovelog/image/mouse.png" alt="地鼠" ></td>
+            <!--alt表示当图片无法加载时alt中的内容会呈现在页面-->
+            <td><img src="lovelog/image/mouse.png" alt="地鼠" ></td>
+            <td><img src="lovelog/image/mouse.png" alt="地鼠" ></td>
+            <td><img src="lovelog/image/mouse.png" alt="地鼠" ></td>
+            </tr>
+            <tr>
+           <td><img src="lovelog/image/mouse.png"  alt="地鼠" ></td>
+            <!--alt表示当图片无法加载时alt中的内容会呈现在页面-->
+            <td><img src="lovelog/image/mouse.png" alt="地鼠" ></td>
+            <td><img src="lovelog/image/mouse.png" alt="地鼠" ></td>
+            <td><img src="lovelog/image/mouse.png" alt="地鼠" ></td>
+            </tr>
+            <tr>
+            <td><img src="lovelog/image/mouse.png" alt="地鼠" ></td>
+            <!--alt表示当图片无法加载时alt中的内容会呈现在页面-->
+            <td><img src="lovelog/image/mouse.png" alt="地鼠" ></td>
+            <td><img src="lovelog/image/mouse.png" alt="地鼠" ></td>
+            <td><img src="lovelog/image/mouse.png" alt="地鼠" ></td>
+            </tr>
+        </table>
+        <script src="./lovelog/jquery.js">  </script>
+</body>
+</html>
+<script>
+    // 全局变量,没一个标签都是一个节点,js获取html节点,对节点进行操作的
+    // js获取节点的方法:document=html文档
+    // element=节点/元素
+        var score=0
+     // var im=document.getElementBYId(score)
+        // var p=$('#score')
+        // 获取节点的简单做法
+        var mouses=$('img')
+        // 函数 获取随机数show为名 Math随机数  向下取整
+     function show(){
+         var a=Math.random()*16
+         a=Math.floor(a)
+         var mouse=mouses.get(a)
+         $(mouse).addClass('up').removeClass('down')
+        //  添加up类删除down类
+        setTimeout(function(){
+            $(mouse).addClass('down').removeClass('up')
+        },2000)
+        // 延迟多长时间执行
+
+     } 
+     function play(){
+          show()
+          show()
+          show()
+          show()
+        //   for( var i=0;i<4;i++)
+        //   show()
+     }
+    setInterval(play,2000)
+    // 每隔两秒调用以下函数
+    $('img').click(function(){
+       $('#dazhong').attr('src','lovelog/audio/dazhong.wav').get(0).play()
+    //    .attr()添加属性
+    $(this).addClass('down').removeClass('up')
+    // 让当前被点击的图片执行down动画,
+    score += 10
+    // score=score+10
+    // .innerText=
+    if(score == 100){
+        if (confirm('真棒恭喜你闯关成功，点击确认有惊喜哟！')==true){
+           window.location.href="./lovelog/love/index.html"
+        }else{   
+           score = 0; 
+        } 
+    }
+    $('#score').text('得分:'+score)
+    })
+    $('body').mousedown(function(){
+        $('body').css('cursor','url(lovelog/image/cursor-down.png),auto')
+    }).mouseup(function(){
+      $('body').css('cursor','url(lovelog/image/cursor.png),auto')  
+    })
+</script>
